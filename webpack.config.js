@@ -9,14 +9,7 @@ module.exports = {
   module: {
     
     rules: [
-      {
-        test: /\.js$|jsx/,
-        exclude: /(node_modules|bower_components|build)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        }
-      },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       {
           test: /\.scss$/,
           loaders: ['style-loader', 'css-loader', 'sass-loader']
