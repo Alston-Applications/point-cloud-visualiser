@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import '../styles/PointCloudVisualiser.scss'
+import { number } from 'prop-types'
 
 const numberOfPoints = 50000
 
@@ -19,43 +20,31 @@ const pointSize = function() {
 
 }
 
-function Points() {
-  const ref = useRef()
-  const { transform, positions } = useMemo(() => {
-    const vec = new THREE.Vector3()
-    const transform = new THREE.Matrix4()
+function Points({
+    points,
+    pointColour,
+    pointsColour,
+    numberOfPoints,
+    pointFunction,
+}) {
 
-    // Precompute randomized initial positions
-    const positions = [...Array(numberOfPoints)].map((_, i) => {
-      const position = new THREE.Vector3()
-      // Place in a grid
-      if(i % 6 == 0) {
-        position.x = (Math.random() * 10) - 5
-        position.y = (Math.random() * 10) - 5
-        position.z = - 5
-      } else if(i % 6 == 1) {
-        position.x = (Math.random() * 10) - 5
-        position.y = 5
-        position.z = (Math.random() * 10) - 5
-      } else if(i % 6 == 2) {
-        position.x = (Math.random() * 10) - 5
-        position.y = (Math.random() * 10) - 5
-        position.z = 5
-      } else if(i % 6 == 3) {
-        position.x = (Math.random() * 10) - 5
-        position.y = - 5
-        position.z = (Math.random() * 10) - 5
-      } else if(i % 6 == 4) {
-        position.x = 5
-        position.y = (Math.random() * 10) - 5
-        position.z = (Math.random() * 10) - 5
-      } else if(i % 6 == 5) {
-        position.x = - 5
-        position.y = (Math.random() * 10) - 5
-        position.z = (Math.random() * 10) - 5
-      }
-      return position
-    })
+    const ref = useRef()
+    const { transform, positions } = useMemo(() => {
+        const vec = new THREE.Vector3()
+        const transform = new THREE.Matrix4()
+
+        var positions;
+
+        if(points) {
+            numberOfPoints = points.length
+            positions = [...Array(numberOfPoints)].map((_, i) => {
+                const position = new THREE.Vector3()
+                position.x = points[i][0]
+                position.y = points[i][1]
+                position.z = points[i][2]
+                return position
+            })
+        }
     
     return { vec, transform, positions }
   }, [])
@@ -74,15 +63,22 @@ function Points() {
   )
 }
 
-export default function PointCloudVisualiser() {
-  return (
-      <div className='pc-main'>
-        <div className='pc-generator'></div>
-        <Canvas className="point-cloud-visualiser" camera={{ position: [7, 10, 20], fov: 45 }}>
-          <spotLight intensity={0.5} angle={0.2} penumbra={1} position={[5, 15, 10]} />
-          <Points></Points>
-          <OrbitControls enablePan={false} enableKeys={true} keys={{LEFT: 'ArrowLeft', UP: 'ArrowUp',RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown'}}/>
-        </Canvas>
-      </div>
-  )
+export default function PointCloudVisualiser({
+    points,
+    pointColour,
+    pointsColour,
+    numberOfPoints,
+    pointFunction,
+}) {
+
+    return (
+        <div className='pc-main'>
+            <div className='pc-generator'></div>
+            <Canvas className="point-cloud-visualiser" camera={{ position: [7, 10, 20], fov: 45 }}>
+            <spotLight intensity={0.5} angle={0.2} penumbra={1} position={[5, 15, 10]} />
+            <Points points={points} ></Points>
+            <OrbitControls enablePan={false} enableKeys={true} keys={{LEFT: 'ArrowLeft', UP: 'ArrowUp',RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown'}}/>
+            </Canvas>
+        </div>
+    )
 }
