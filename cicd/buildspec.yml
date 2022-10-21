@@ -7,7 +7,8 @@ env:
 phases:
   install:
     commands:
-      - sudo apt-get install jq
+      - yum install jq -y
+      - jq --version
       - echo ${NPM_TOKEN}.npm-token
       - echo `$NPM_TOKEN | jq -r '.npm-token'`
       - echo "//point-cloud-visualiser/:_authToken=$NPM_TOKEN"
