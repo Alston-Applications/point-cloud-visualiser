@@ -2,7 +2,7 @@
 
 point-cloud-visualiser is a react component which can be used to visualise point clouds.
 
-## Instalation
+## Installation
 
 To start using point-cloud-visualiser install using npm:
 ```
@@ -11,9 +11,12 @@ npm i point-cloud-visualiser
 
 ## Parameters
 
-//TODO
+Parameter           | Required?         | Description                                                   |
+------------------- | ----------------  | ------------------------------------------------------------- |
+points              | no                | A 2D array containing all the points to be displayed          |  
 
-## Examples
+
+## Examples of how to define the point cloud
 
 You have several options to define the point cloud. The simplist solution is to provide a 2D array of points:
 
@@ -69,12 +72,6 @@ export default App;
 The result of the above can be seen below:
 ![Example1](/images/example1.png)
 
-## Styling and cofiguration
+## Examples of how to style the point cloud
 
 //TODO
-
-## Examples
-
-//TODO
-
-![Example image](/images/example.png)
