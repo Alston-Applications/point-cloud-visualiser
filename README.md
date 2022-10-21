@@ -40,27 +40,27 @@ function getPoints(numberOfPoints) {
         point[0] = (Math.random() * 13) - 6.5
         point[1] = (Math.random() * 5) - 2.5
         point[2] = - 0.5
-      } else if(i % 6 == 1) {
+    } else if(i % 6 == 1) {
         point[0] = (Math.random() * 13) - 6.5
         point[1] = 2.5
         point[2] = (Math.random() * 1) - 0.5
-      } else if(i % 6 == 2) {
+    } else if(i % 6 == 2) {
         point[0] = (Math.random() * 13) - 6.5
         point[1] = (Math.random() * 5) - 2.5
         point[2] = 0.5
-      } else if(i % 6 == 3) {
+    } else if(i % 6 == 3) {
         point[0] = (Math.random() * 13) - 6.5
         point[1] = - 2.5
         point[2] = (Math.random() * 1) - 0.5
-      } else if(i % 6 == 4) {
+    } else if(i % 6 == 4) {
         point[0] =  6.5
         point[1] = (Math.random() * 5) - 2.5
         point[2] = (Math.random() * 1) - 0.5
-      } else if(i % 6 == 5) {
+    } else if(i % 6 == 5) {
         point[0] = - 6.5
         point[1]= (Math.random() * 5) - 2.5
         point[2] = (Math.random() * 1) - 0.5
-      }
+    }
     points[i]=point
   }
   return points
@@ -90,8 +90,8 @@ import {PointCloudVisualiser} from 'point-cloud-visualiser'
 import './App.css';
 
 function getPoint(i) {
-  const point = Array(3)
-  if(i % 6 == 0) {
+    const point = Array(3)
+    if(i % 6 == 0) {
       point[0] = (Math.random() * 13) - 6.5
       point[1] = (Math.random() * 5) - 2.5
       point[2] = - 0.5
