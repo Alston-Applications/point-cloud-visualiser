@@ -1,9 +1,14 @@
 {
   "name": "point-cloud-visualiser",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "A react component which can be used to visualise point clouds.",
-  "main": "PointCloudVisualiser.js",
+  "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
   "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,10 +25,26 @@
     "url": "https://github.com/Alston-Applications/point-cloud-visualiser/issues"
   },
   "homepage": "https://github.com/Alston-Applications/point-cloud-visualiser#readme",
-  "peerDependencies": {
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^5.0.0",
+    "file-loader": "^5.0.0",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^10.0.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^3.0.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
     "@react-three/drei": "^9.36.0",
     "@react-three/fiber": "^8.8.10",
-    "react": "^18.2.0",
-    "three": "^0.145.0"
+    "react": "^16.0.0",
+    "three": "^0.145.0",
+    "webpack": "^4.0.0"
   }
 }

@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import './PointCloudVisualiser.css'
+import '../styles/PointCloudVisualiser.scss'
 
 const numberOfPoints = 50000
 
@@ -76,7 +76,6 @@ function Points() {
 
 export default function PointCloudVisualiser() {
   return (
-    <>
       <div className='pc-main'>
         <div className='pc-generator'></div>
         <Canvas className="point-cloud-visualiser" camera={{ position: [7, 10, 20], fov: 45 }}>
@@ -85,7 +84,5 @@ export default function PointCloudVisualiser() {
           <OrbitControls enablePan={false} enableKeys={true} keys={{LEFT: 'ArrowLeft', UP: 'ArrowUp',RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown'}}/>
         </Canvas>
       </div>
-      
-    </>
   )
 }
