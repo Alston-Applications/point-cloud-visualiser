@@ -7,7 +7,9 @@ env:
 phases:
   install:
     commands:
-      - echo "//point-cloud-visualiser:8080/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - echo NPM_TOKEN
+      - echo "//point-cloud-visualiser/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - npm set //point-cloud-visualiser/:_authToken $NPM_TOKEN
       - npm install
   build:
     commands:
