@@ -12,7 +12,7 @@ npm i point-cloud-visualiser
 ## Parameters
 
 Parameter           | Required?                                 | Description                                                                                                       |
-------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+:-----------------: | :---------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
 points              | yes (unless points function is defined)   | A 2D array containing all the points to be displayed                                                              |
 pointsFunction      | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z)   |
 numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the point cloud. Ignored in the case points is defined           |
