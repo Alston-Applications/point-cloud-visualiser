@@ -4,4 +4,4 @@ point-cloud-visualiser is an public react component which can be used to visuali
 
 ## Examples
 
-![alt text](https://github.com/Alston-Applications/point-cloud-visualiser/images/example.png?raw=true)
+![Example image](/images/example.png)
