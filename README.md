@@ -19,7 +19,6 @@ numberOfPoints      | no (unless pointsFunction is defined)     | The total numb
 pointColour         | no                                        | The colour asigned to all points within the point cloud                                                           |
 pointsColour        | no                                        | An array with length equal to the number of points, this allows colour definition of individual points            |
 cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0)                                                   |
-------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 
 ## Examples of how to define the point cloud
 
