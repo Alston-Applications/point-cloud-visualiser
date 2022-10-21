@@ -7,6 +7,7 @@ env:
 phases:
   install:
     commands:
+      - echo ${NPM_TOKEN}.npm-token
       - echo $NPM_TOKEN["npm-token"]
       - echo "//point-cloud-visualiser/:_authToken=$NPM_TOKEN"
       - echo "//point-cloud-visualiser/:_authToken=${NPM_TOKEN}"
