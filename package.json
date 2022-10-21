@@ -33,6 +33,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.0.15",
     "css-loader": "^5.0.0",
     "file-loader": "^5.0.0",
     "node-sass": "^7.0.3",
