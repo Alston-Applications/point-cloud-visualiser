@@ -122,7 +122,7 @@ function getPoint(i) {
 function App() {
   return (
     <>
-    <PointCloudVisualiser points={false} pointFunction={getPoint} numberOfPoints={100000} />
+    <PointCloudVisualiser pointFunction={getPoint} numberOfPoints={100000} />
     </>
     
   );
@@ -158,7 +158,7 @@ function getPoint(i) {
 function App() {
   return (
     <>
-    <PointCloudVisualiser points={false} pointFunction={getPoint} numberOfPoints={100000} pointColour={'#33E3FF'} />
+    <PointCloudVisualiser pointFunction={getPoint} numberOfPoints={100000} pointColour={'#33E3FF'} />
     </>
     
   );
