@@ -1,4 +1,4 @@
-version: 0.2h
+version: 0.2
 
 env:
   secrets-manager:
