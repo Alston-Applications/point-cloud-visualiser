@@ -3,15 +3,14 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    filename: 'index.js'
   },
   mode: 'production',
   module: {
     
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$|jsx/,
         exclude: /(node_modules|bower_components|build)/,
         loader: 'babel-loader',
         query: {
