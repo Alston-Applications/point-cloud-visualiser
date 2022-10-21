@@ -133,4 +133,39 @@ export default App;
 
 ## Examples of how to style the point cloud
 
-//TODO
+The following examples show how the parameters can be used to style the point cloud.
+
+### Example 1 - changing the point colour
+
+```js
+import {PointCloudVisualiser} from 'point-cloud-visualiser'
+import './App.css';
+
+function getPoint(i) {
+  const point = Array(3)
+  
+  var x = Math.random() -0.5
+  var y = Math.random() -0.5
+  var z = Math.random() -0.5
+
+  point[0] = x * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+  point[1] = y * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+  point[2] = z * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+
+  return point
+}
+
+function App() {
+  return (
+    <>
+    <PointCloudVisualiser points={false} pointFunction={getPoint} numberOfPoints={100000} pointColour={'#33E3FF'} />
+    </>
+    
+  );
+}
+
+export default App; />
+```
+
+The result of the above can be seen below:
+![Example2](/images/example2.png)
