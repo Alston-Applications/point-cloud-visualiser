@@ -12,6 +12,6 @@ phases:
     commands:
       - npm run build
       - npm config set registry 'https://www.npmjs.com/package/point-cloud-visualiser'
-      - npm config set '//point-cloud-visualiser/:always-auth' 'true'
-      - npm config set '//point-cloud-visualiser/:_authToken' '${NPM_TOKEN}'
+      - npm config set '//www.npmjs.com/package/point-cloud-visualiser/:always-auth' 'true'
+      - npm config set '//www.npmjs.com/package/point-cloud-visualiser/:_authToken' '${NPM_TOKEN}'
       - npm publish
