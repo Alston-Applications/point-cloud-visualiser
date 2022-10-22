@@ -1,6 +1,6 @@
 {
   "name": "point-cloud-visualiser",
-  "version": "1.2.1",
+  "version": "1.2.6",
   "description": "A react component which can be used to visualise point clouds.",
   "main": "build/index.js",
   "peerDependencies": {

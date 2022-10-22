@@ -169,7 +169,7 @@ export default App; />
 The result of the above can be seen below:
 ![Example2](/images/example2.png)
 
-### Example 3 - specifying each of the point' colour
+### Example 3 - specifying each of the points' colour
 
 ```js
 import {PointCloudVisualiser} from 'point-cloud-visualiser'
