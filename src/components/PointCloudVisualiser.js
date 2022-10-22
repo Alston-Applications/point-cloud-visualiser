@@ -24,7 +24,6 @@ function Points({
     const ref = useRef()
     const { transform, positions } = useMemo(() => {
         const transform = new THREE.Matrix4()
-        var colours;
         var positions;
 
         if(points) {
@@ -46,7 +45,7 @@ function Points({
             })
         }
     
-    return { transform, positions, colours }
+    return { transform, positions }
   }, [])
   useFrame(() => {
     for (let i = 0; i < numberOfPoints; ++i) {
