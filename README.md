@@ -19,7 +19,7 @@ points              | yes (unless pointFunction is defined)     | A 2D array con
 pointFunction       | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z)   |
 numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the PC. Ignored in the case points is defined                    |
 pointColour         | no                                        | The colour asigned to all points within the PC                                                                    |
-pointsColour        | no                                        | COMMING SOON! An array with length equal to the number of points, defining the individual point colours           |
+pointsColour        | no                                        | An array with length equal to the number of points, defining the individual point colours                         |
 cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0)                                                   |
 
 ## Examples
@@ -166,6 +166,58 @@ function App() {
 
 export default App; />
 ```
-
 The result of the above can be seen below:
 ![Example2](/images/example2.png)
+
+### Example 3 - specifying each of the point' colour
+
+```js
+import {PointCloudVisualiser} from 'point-cloud-visualiser'
+import './App.css';
+
+function getPoints(numberOfPoints) {
+  
+  const points = Array(numberOfPoints)
+  for(var i=0 ; i<numberOfPoints; i++) {
+  
+  const point = Array(3)
+  
+  var x = Math.random() -0.5
+  var y = Math.random() -0.5
+  var z = Math.random() -0.5
+
+  point[0] = x * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+  point[1] = y * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+  point[2] = z * (1 / Math.sqrt(Math.pow(x,2) + Math.pow(y,2)+ Math.pow(z,2))) * 5
+
+  points[i]=point
+  }
+  return points
+}
+
+function getPointsColour(points) {
+  const colours = Array(points.length)
+  for(var i=0 ; i<points.length ; i++) {
+    colours[i] = points[i][1] > 0 ? 0x0057b8 : 0xFFD700
+  }
+  return colours
+}
+
+function App() {
+
+  const numberOfPoints = 100000
+  const points = getPoints(numberOfPoints)
+  const pointsColour = getPointsColour(points)
+
+  return (
+    <>
+    <PointCloudVisualiser points={points} pointsColour={pointsColour}/>
+    </>
+    
+  );
+}
+
+export default App;
+```
+The result of the above can be seen below:
+![Example3](/images/example3.png)

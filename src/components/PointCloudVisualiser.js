@@ -16,14 +16,15 @@ const pointSize = function(numberOfPoints) {
 function Points({
     points,
     pointColour,
+    pointsColour,
     numberOfPoints,
     pointFunction,
 }) {
 
     const ref = useRef()
     const { transform, positions } = useMemo(() => {
-        const vec = new THREE.Vector3()
         const transform = new THREE.Matrix4()
+        var colours;
         var positions;
 
         if(points) {
@@ -45,19 +46,25 @@ function Points({
             })
         }
     
-    return { vec, transform, positions }
+    return { transform, positions, colours }
   }, [])
   useFrame(() => {
     for (let i = 0; i < numberOfPoints; ++i) {
       transform.setPosition(positions[i])
       ref.current.setMatrixAt(i, transform)
+      if(pointsColour) {
+        ref.current.setColorAt(i, new THREE.Color().setHex(pointsColour[i]));
+      }
+      
     }
     ref.current.instanceMatrix.needsUpdate = true
   })
+
+  const spheresGeometry = new THREE.IcosahedronGeometry(pointSize(numberOfPoints), 1);
+  const material = pointColour ? new THREE.MeshBasicMaterial({ color: pointColour }) : new THREE.MeshBasicMaterial({});
+
   return (
-    <instancedMesh ref={ref} args={[null, null, numberOfPoints]}>
-      <sphereBufferGeometry args={[pointSize(numberOfPoints)]} />
-      <meshBasicMaterial color={ pointColour ? pointColour : 'black' } />
+    <instancedMesh ref={ref} args={[spheresGeometry, material, numberOfPoints]}>
     </instancedMesh>
   )
 }
@@ -65,6 +72,7 @@ function Points({
 export default function PointCloudVisualiser({
     points,
     pointColour,
+    pointsColour,
     numberOfPoints,
     pointFunction,
 }) {
@@ -74,7 +82,7 @@ export default function PointCloudVisualiser({
             <div className='pc-generator'></div>
             <Canvas className="point-cloud-visualiser" camera={{ position: [7, 10, 20], fov: 45 }}>
             <spotLight intensity={0.5} angle={0.2} penumbra={1} position={[5, 15, 10]} />
-            <Points points={points} pointFunction={pointFunction} numberOfPoints={points ? points.length : numberOfPoints} pointColour={pointColour} ></Points>
+            <Points points={points} pointFunction={pointFunction} numberOfPoints={points ? points.length : numberOfPoints} pointColour={pointColour} pointsColour={pointsColour} ></Points>
             <OrbitControls enablePan={false} enableKeys={true} keys={{LEFT: 'ArrowLeft', UP: 'ArrowUp',RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown'}}/>
             </Canvas>
         </div>
