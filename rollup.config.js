@@ -29,5 +29,8 @@ export default [
       commonjs(),
       postcss(),
     ],
+    external: [
+      ...Object.keys(packageJson.peerDependencies || {})
+    ],
   },
 ];
