@@ -13,14 +13,15 @@ npm i point-cloud-visualiser
 
 The table below defines the parameters which can be passed to the component in order to define the PC.
 
-Parameter           | Required?                                 | Description                                                                                                       |
-------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-points              | yes (unless pointFunction is defined)     | A 2D array containing all the points to be displayed                                                              |
-pointFunction       | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z)   |
-numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the PC. Ignored in the case points is defined                    |
-pointColour         | no                                        | The colour asigned to all points within the PC                                                                    |
-pointsColour        | no                                        | An array with length equal to the number of points, defining the individual point colours                         |
-cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0)                                                   |
+Parameter           | Required?                                 | Description                                                                                                                       |
+------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+points              | yes (unless pointFunction is defined)     | A 2D array containing all the points to be displayed. See example 1.                                                              |
+pointFunction       | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z). See example 2.   |
+numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the PC. Ignored in the case points is defined. See example 2.                    |
+pointColour         | no                                        | The colour asigned to all points within the PC. Examples: "black", "#000000".                                                     |
+pointsColour        | no                                        | An array with length equal to the number of points, defining the individual point colours. See example 3.                         |
+pointColourFunction | no                                        | A function in the form of: `const pointsColour = function(x,y,z,i) { return 0x000000 }`. See example 4.                           |
+cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0). Example: [5,20,30].                                              |
 
 ## Examples
 
