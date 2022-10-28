@@ -221,3 +221,85 @@ export default App;
 ```
 The result of the above can be seen below:
 ![Example3](/images/example3.png)
+
+### Example 4 - specifying each of the points' colour using a function
+
+The below example allows you to specify the points' colour by passing a function. The function will be passed the points x,y,z location and the index of the point in the points array. a hex value must be returned in response.
+
+```js
+import { PointCloudVisualiser } from "point-cloud-visualiser"
+import './App.css';
+
+function getPoints(numberOfPoints) {
+  const points = Array(numberOfPoints)
+  for(var i=0 ; i<numberOfPoints; i++) {
+    const point = Array(3)
+    if(i > numberOfPoints - (numberOfPoints/2)) {
+      point[0] = (Math.random() * 50) - 25
+      point[1] = (Math.random() * 20) - 10
+      point[2] = (Math.random() * 20) - 10
+    } else if(i % 6 === 0) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = - 1.5
+    } else if(i % 6 === 1) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 2) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = 1.5
+    } else if(i % 6 === 3) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 4) {
+        point[0] =  6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 5) {
+        point[0] = - 6.5
+        point[1]= (Math.random() * 5) - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    }
+    points[i]=point
+  }
+  return points
+}
+
+function App() {
+
+  const numberOfPoints = 180000
+  const points = getPoints(numberOfPoints)
+  const pointsColour = function(x,y,z,i) {
+    if(i > numberOfPoints - (numberOfPoints/2)) {
+      return 0x000000
+    } else if(x === 6.5) {
+      return 0xff0000
+    } else if(x === - 6.5) {
+      return 0xff0000
+    } else if(y === 2.5) {
+      return 0x00ff00
+    } else if(y === -2.5) {
+      return 0x00ff00
+    } else if(z === 1.5) {
+      return 0x0000ff
+    } else if(z === -1.5) {
+      return 0x0000ff
+    }
+    return 0x000000;
+  }
+
+  return (
+    <>
+    <PointCloudVisualiser points={points} pointColourFunction={pointsColour}></PointCloudVisualiser>
+    </>
+    
+  );
+}
+
+export default App;
+```
+The result of the above can be seen below:
+![Example4](/images/example4.png)

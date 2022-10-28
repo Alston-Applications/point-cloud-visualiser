@@ -18,12 +18,14 @@ export default function Points({
     pointsColour,
     numberOfPoints,
     pointFunction,
+    pointColourFunction,
 }) {
 
     const ref = useRef()
-    const { transform, positions } = useMemo(() => {
+    const { transform, positions, colours } = useMemo(() => {
         const transform = new THREE.Matrix4()
         var positions;
+        var colours;
 
         if(points) {
             positions = [...Array(numberOfPoints)].map((_, i) => {
@@ -43,17 +45,26 @@ export default function Points({
                 return position
             })
         }
+
+        if(pointsColour) {
+          colours = [...Array(numberOfPoints)].map((_, i) => {
+            return new THREE.Color().setHex(pointsColour[i]);
+          })
+        } else if(pointColourFunction) {
+          colours = [...Array(numberOfPoints)].map((_, i) => {
+            return new THREE.Color().setHex(pointColourFunction(positions[i].x, positions[i].y, positions[i].z, i));
+          })
+        }
     
-    return { transform, positions }
+    return { transform, positions, colours }
   }, [])
   useFrame(() => {
     for (let i = 0; i < numberOfPoints; ++i) {
       transform.setPosition(positions[i])
       ref.current.setMatrixAt(i, transform)
-      if(pointsColour) {
-        ref.current.setColorAt(i, new THREE.Color().setHex(pointsColour[i]));
+      if(pointsColour || pointColourFunction) {
+        ref.current.setColorAt(i, colours[i]);
       }
-      
     }
     ref.current.instanceMatrix.needsUpdate = true
   })
