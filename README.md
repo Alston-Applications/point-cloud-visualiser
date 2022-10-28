@@ -13,14 +13,15 @@ npm i point-cloud-visualiser
 
 The table below defines the parameters which can be passed to the component in order to define the PC.
 
-Parameter           | Required?                                 | Description                                                                                                       |
-------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-points              | yes (unless pointFunction is defined)     | A 2D array containing all the points to be displayed                                                              |
-pointFunction       | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z)   |
-numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the PC. Ignored in the case points is defined                    |
-pointColour         | no                                        | The colour asigned to all points within the PC                                                                    |
-pointsColour        | no                                        | An array with length equal to the number of points, defining the individual point colours                         |
-cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0)                                                   |
+Parameter           | Required?                                 | Description                                                                                                                       |
+------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+points              | yes (unless pointFunction is defined)     | A 2D array containing all the points to be displayed. See example 1.                                                              |
+pointFunction       | yes (unless points is defined)            | A function that takes the point number in the range [0,numberOfPoints-1] and returns the point position (x,y,z). See example 2.   |
+numberOfPoints      | no (unless pointsFunction is defined)     | The total number of points you wish to define in the PC. Ignored in the case points is defined. See example 2.                    |
+pointColour         | no                                        | The colour asigned to all points within the PC. Examples: "black", "#000000".                                                     |
+pointsColour        | no                                        | An array with length equal to the number of points, defining the individual point colours. See example 3.                         |
+pointColourFunction | no                                        | A function in the form of: `const pointsColour = function(x,y,z,i) { return 0x000000 }`. See example 4.                           |
+cameraPosition      | no                                        | The position of the camera - which points to the origin (0,0,0). Example: [5,20,30].                                              |
 
 ## Examples
 
@@ -221,3 +222,85 @@ export default App;
 ```
 The result of the above can be seen below:
 ![Example3](/images/example3.png)
+
+### Example 4 - specifying each of the points' colour using a function
+
+The below example allows you to specify the points' colour by passing a function. The function will be passed the points x,y,z location and the index of the point in the points array. a hex value must be returned in response.
+
+```js
+import { PointCloudVisualiser } from "point-cloud-visualiser"
+import './App.css';
+
+function getPoints(numberOfPoints) {
+  const points = Array(numberOfPoints)
+  for(var i=0 ; i<numberOfPoints; i++) {
+    const point = Array(3)
+    if(i > numberOfPoints - (numberOfPoints/2)) {
+      point[0] = (Math.random() * 50) - 25
+      point[1] = (Math.random() * 20) - 10
+      point[2] = (Math.random() * 20) - 10
+    } else if(i % 6 === 0) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = - 1.5
+    } else if(i % 6 === 1) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 2) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = 1.5
+    } else if(i % 6 === 3) {
+        point[0] = (Math.random() * 13) - 6.5
+        point[1] = - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 4) {
+        point[0] =  6.5
+        point[1] = (Math.random() * 5) - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    } else if(i % 6 === 5) {
+        point[0] = - 6.5
+        point[1]= (Math.random() * 5) - 2.5
+        point[2] = (Math.random() * 3) - 1.5
+    }
+    points[i]=point
+  }
+  return points
+}
+
+function App() {
+
+  const numberOfPoints = 180000
+  const points = getPoints(numberOfPoints)
+  const pointsColour = function(x,y,z,i) {
+    if(i > numberOfPoints - (numberOfPoints/2)) {
+      return 0x000000
+    } else if(x === 6.5) {
+      return 0xff0000
+    } else if(x === - 6.5) {
+      return 0xff0000
+    } else if(y === 2.5) {
+      return 0x00ff00
+    } else if(y === -2.5) {
+      return 0x00ff00
+    } else if(z === 1.5) {
+      return 0x0000ff
+    } else if(z === -1.5) {
+      return 0x0000ff
+    }
+    return 0x000000;
+  }
+
+  return (
+    <>
+    <PointCloudVisualiser points={points} pointColourFunction={pointsColour}></PointCloudVisualiser>
+    </>
+    
+  );
+}
+
+export default App;
+```
+The result of the above can be seen below:
+![Example4](/images/example4.png)
